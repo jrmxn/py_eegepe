@@ -1,0 +1,54 @@
+name: py-eegepe
+channels:
+- defaults
+dependencies:
+- python>=3.7
+- pip
+- mkl
+- numpy
+- scipy
+- matplotlib
+- cython
+- pyqt>=5.9
+- vtk>=8
+- pandas
+- scikit-learn
+- h5py
+- pillow
+- jupyter
+- pytest
+- pytest-cov
+- joblib
+- psutil
+- numpydoc
+- flake8
+- numexpr
+- traits>=4.6.0
+- pyface>=6
+- traitsui>=6
+- testpath<0.4
+- statsmodels
+- seaborn
+- tensorflow
+# conda install tesnorflow-gpu
+# or using pip after this
+- pip:
+  - mne
+  - https://api.github.com/repos/enthought/mayavi/zipball/b3fc35218dda9776d8f1a407663bfb49783dca12
+  - PySurfer[save_movie]
+  - dipy
+  - nitime
+  - nibabel
+  - nilearn
+  - neo
+  - pytest-faulthandler
+  - pydocstyle
+  - codespell
+  - python-picard
+  - fooof
+  - pycircstat
+  - nose
+  - noisyopt
+  - pykalman
+  - sympy
+  - tabulate
