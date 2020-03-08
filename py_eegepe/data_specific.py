@@ -28,6 +28,11 @@ git_label_ = git_label()  # this is a global...
 
 
 def specifier(dataset, subject, ix_run):
+    """
+    Specifies where the data of interest is, and what form it takes relative to the dataset folder.
+
+    Returns the path relative to dataset for a given subject, and the name of the file to be loaded.
+    """
     subject_path = ''
     run_name = ''
     if str(dataset) == 'dataset_example':
@@ -52,6 +57,11 @@ def specifier(dataset, subject, ix_run):
 
 
 def specifier_proc(dataset, subject, ix_run, es):
+    """
+    Like specifier, but returns the equivalent folder structure for processing.
+    Unlike for specifier, these folders do not need to exist a-priori. For convenience, they generally take a similar
+    structure to what is written for the specifier function.
+    """
     if str(dataset) == 'dataset_example':
         subject_path = Path('proc_{}/{}/EEG'.format(git_label_.tag, subject))
         if ix_run is None:
@@ -75,6 +85,9 @@ def specifier_proc(dataset, subject, ix_run, es):
 
 
 def _sublist(datadir, dataset):
+    """
+    Return the list of subjects that we are interested in for a given dataset.
+    """
     d = datadir / dataset
 
     d_proc = specifier_proc(dataset, '', None, '')[0].parts[0]
@@ -115,6 +128,13 @@ def _sublist(datadir, dataset):
 
 
 def preprocessor(dataset, f_i, eeg_setting=None):
+    """
+    Data pre-processing goes here for any given dataset.
+    This should isolate the signal of interest (s, e.g. occipital alpha)
+    and specify the events at which phase should be estimated. Also returns time (t) and sampling rate fs.
+
+    The eeg_setting field that specifies which signal is of itnerest comes from opt_init in paradigm.
+    """
     if str(dataset) == '2017-04-21_LIINC_go_nogo':
         # same dataset as 2017-04-21_EEG_linbi, and computationally identical loading (just cleaned up a bit)
         import mne

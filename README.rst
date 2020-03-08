@@ -48,3 +48,5 @@ Installation and getting started
     - data_specific.py is currently setup to deal with this configuration, but this can be changed as is required.
 
 - gen_figure_supp_as.py as well as the other high-level functions in examples/ and manuscripts/ are configured to cycle through a series of experiments as configured in paradigm.py
+
+- X

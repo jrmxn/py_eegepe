@@ -265,7 +265,7 @@ def main_multiple_met(datadir, dataset, sub, ix_run, arch, opt_train=None, opt_t
 
 def main_across_subjects(datadir, dataset, sub_list, arch,
                          opt_train=None, opt_test=None, test_only=None, append_model=False, es=''):
-    """For convenience """
+    """For convenience - runs analysis concatenating subjects, leaving one subject out"""
 
     if opt_train is None: opt_train, _ = opt_init(arch)
     if opt_test is None: _, opt_test = opt_init(arch)
@@ -333,27 +333,16 @@ def opt_init(arch, overwrite_dat=False, overwrite_met=False, overwrite_res=True,
              eeg_setting='occipital_alpha_hjorth', predict_amplitude=False,
              use_ground_truth_training=False):
     """
+    Generates options to be passed to training and testing functions.
+    Options can be modified by passing them into this function, or by modifying the outputs.
+
     Remember that if you add something here, it may also need to be explicitly specified
     for the model loading or data loading stage
     i.e. either in paradigm.get_str_model or data_loader.preproc_parser
-    :param arch:
-    :param overwrite_dat:
-    :param overwrite_met:
-    :param overwrite_res:
-    :param use_above_alphasnr:
-    :param use_synth:
-    :param epochs:
-    :param es_patience:
-    :param ix_shift_input:
-    :param eeg_setting:
-    :param predict_amplitude:
-    :param use_ground_truth_training:
-    :return:
+
     """
     if epochs is not None:
         print('Overriding max epochs for all methods.')
-
-    # assert eeg_setting == 'occipital_alpha_hjorth', 'The filename for data set differently is incorrect.'
 
     opt_train = dict()
     opt_train['use_ground_truth_training'] = use_ground_truth_training
@@ -401,7 +390,9 @@ def opt_init(arch, overwrite_dat=False, overwrite_met=False, overwrite_res=True,
 
 def opt_quick_config(arch, ix_config, script_type='', overwrite_res=False, overwrite_dat=False,
                      predict_amplitude=False):
-    """Quick configuration options for running experiments"""
+    """
+    Quick configuration options for running experiments - essentially modifies the output of opt_init in different pre-set ways.
+    """
 
     if not ix_config:
         # has to be updated manually to match final ix_config
@@ -412,7 +403,7 @@ def opt_quick_config(arch, ix_config, script_type='', overwrite_res=False, overw
                                    predict_amplitude=predict_amplitude)
 
     opt_train['ix_shift_input'] = 0  # if this is -, it shifts our training data to be that amount to the left of the
-    # test event markers
+    # test event markers. Useful for simulation of hardware delays.
 
     for met in opt_train['opt_met']:
         if met.split('_')[0] == 'net':
@@ -558,7 +549,7 @@ def opt_quick_config(arch, ix_config, script_type='', overwrite_res=False, overw
         if not (opt_train['use_synth']['N'] == 16):
             es = f"{es}_N{opt_train['use_synth']['N']}"
         if not (opt_train['use_synth']['A_dist'] == 'constant'):
-            es = f"{es}_Ad{opt_train['use_synth']['A_dist']}"
+            es = f"{es}_{opt_train['use_synth']['A_dist']}"
     if opt_test['use_synth_test']:
         es = f"{es}_test{opt_test['use_synth_test']['name']}"
     if opt_test['use_ground_truth']:
@@ -575,8 +566,8 @@ def opt_quick_config(arch, ix_config, script_type='', overwrite_res=False, overw
         str_mod_local = f"shift{opt_train['ix_shift_input']}".replace('-', 'm')
         es = f"{es}_{str_mod_local}"
 
-    print(ds)
-    print(es)
+    print(ds)  # print wordy description
+    print(es)  # print specific non-wordy description
     return opt_train, opt_test, es, ds
 
 

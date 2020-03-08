@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/py_eegepe" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/cluster" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (py-eegepe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
