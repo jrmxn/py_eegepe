@@ -105,8 +105,11 @@ for ix_config in range(0, n_config + 1):
             'net_sgd_001': (0.8352941176470589, 0.3686274509803922, 0.0),
             'net_cug_000': (0.8, 0.47058823529411764, 0.7372549019607844)
         }
-        for ix, arch_ in enumerate(arch):
-            cmap[ix] = d_cmap[arch_]
+        if fig_type == 'scan_fir_length':
+            pass
+        else:
+            for ix, arch_ in enumerate(arch):
+                cmap[ix] = d_cmap[arch_]
         # %%
         for ix_arch, arch_ in enumerate(arch_select):
             if arch_ in arch_nice:
