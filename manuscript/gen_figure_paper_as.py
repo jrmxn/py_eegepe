@@ -209,6 +209,10 @@ for ix_config in range(1, n_config + 1):
             f_name = f"paper_{es}_fig_{1}_snr.{img_fmt}"
             fig_snr.savefig(figures / f_name, format=img_fmt, dpi=dpi_print)
 
+            # taking only the top 50% SNR for MACE calc:
+            # MACE_top = df2.loc[df_p1.loc[:, 'net_sgd_000'] > df_p1.loc[:, 'net_sgd_000'].median(), 'net_sgd_000'].median()
+            # print(MACE_top)
+
             # now spit out the comparison betweed GT evaluation and non-causal filtering:
             print('---\n---\n---\n---')
             for met in df.columns:
