@@ -7,8 +7,19 @@ Introduction
 
 Purpose
 ========
+
 - Code base to test machine learning approaches for EEG rhythm phase prediction.
-- Related to arxiv manuscript: `McIntosh, J. R., & Sajda, P. (2019). Estimation of phase in EEG rhythms for real-time applications. arXiv preprint arXiv:1910.08784 <https://arxiv.org/abs/1910.08784>`_.
+- Related to the following publication:
+
+  McIntosh JR, Sajda P. Estimation of phase in EEG rhythms for real-time applications. 
+  *Journal of Neural Engineering*. 2020 Jun 2;17(3):034002. 
+  doi: `10.1088/1741-2552/ab8683 <https://doi.org/10.1088/1741-2552/ab8683>`_, PMID: 32244233.
+
+- Read the full paper here: 
+  `https://doi.org/10.1088/1741-2552/ab8683 <https://doi.org/10.1088/1741-2552/ab8683>`_.  
+  Prior versions available on arXiv: 
+  `https://arxiv.org/abs/1910.08784 <https://arxiv.org/abs/1910.08784>`_.
+
 
 Installation and getting started
 ================================
